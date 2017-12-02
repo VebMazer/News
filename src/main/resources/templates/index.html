@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Newz</title>
+    </head>
+    <body>
+
+        <h2>Newz</h2>
+
+        <div>
+            <ul>
+                <li th:each="articles : ${articles}" th:text="${articles.name}"></li>
+            </ul>
+        </div>
+
+        <a href="edit.html">To edit page.</a>
+
+
+    </body>
+
+</html>
