@@ -1,8 +1,10 @@
 
 package wad.domain;
 
+import java.util.List;
 import java.util.TreeSet;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,6 +20,6 @@ public class Category extends AbstractPersistable<Long> {
     
     private String name;
     
-    @ManyToMany() //Lisää eager
-    private TreeSet<Article> articles;
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Article> articles;
 }
