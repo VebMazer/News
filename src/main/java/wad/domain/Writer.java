@@ -22,4 +22,12 @@ public class Writer extends AbstractPersistable<Long> {
     @ManyToMany(fetch = FetchType.EAGER)
     private List<Article> articles;
     
+    public void removeArticle(Article a) {
+        articles.remove(a);
+    }
+    
+    public void addArticle(Article a) {
+        if(!articles.contains(a)) articles.add(a);
+    }
+    
 }

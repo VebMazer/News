@@ -2,19 +2,13 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta charset="UTF-8" />
+        <title>Edit</title>
     </head>
     <body>
         <h2>Edit</h2>
         <div>To be added soon!</div>
         
-        <h2>Add new</h2>
-
-        <form method="POST" action="/edit">
-            <input type="text" name="name" id="name"/>
-            <input type="submit" value="Add"/>
-        </form>
+        <a th:href="@{/admin}">To admin page.</a>
     </body>
 </html>
