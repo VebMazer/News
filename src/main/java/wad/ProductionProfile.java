@@ -8,7 +8,6 @@ import org.springframework.context.annotation.Profile;
 import javax.sql.DataSource;
 import javax.transaction.Transactional;
 
-@Transactional
 @Configuration
 @Profile("production")
 public class ProductionProfile {
