@@ -1,6 +1,7 @@
 
 package wad.domain;
 
+import java.time.LocalDateTime;
 import java.util.TreeSet;
 import javax.persistence.Entity;
 import lombok.AllArgsConstructor;
@@ -15,11 +16,22 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
 public class UserSession  extends AbstractPersistable<Long> {
     
     private String name;
-    private TreeSet<Category> searchCategories;
+    private Boolean byTimeOrByViews; //byTime: true, byViews: false
+    private String byTimeOrByViewsString;
+    private Integer articlesShown;
+    private String currentPath;
+    private LocalDateTime lastVisited;
     
-    public boolean NothingSelected() {
-        if(searchCategories == null) return true;
-        if(searchCategories.isEmpty()) return true;
-        return false;
+    public void setDefaults() {
+        setByTimeOrByViews(true);
+        articlesShown = 5;
+        currentPath = "/";
+        lastVisited = LocalDateTime.now();
+    }
+    
+    public void setByTimeOrByViews(Boolean byTimeOrByViews) {
+        if(byTimeOrByViews) byTimeOrByViewsString = "Most Popular";
+        else byTimeOrByViewsString = "Most recent";
+        this.byTimeOrByViews = byTimeOrByViews;
     }
 }

@@ -6,18 +6,40 @@
         <title>Create</title>
     </head>
     <body>
-        <h2>Create</h2>
-        <div>To be added soon!</div>
+        <h2>Create article</h2>
         
-        <h2>Add new</h2>
-
-        <form method="POST" action="/create">
-            <input type="text" name="name" id="name"/>
-            <input type="submit" value="Add"/>
+        <form method="POST" action="/create" th:object="${article}" enctype="multipart/form-data">
+            Headline: <input type="text" name="name" id="name"/>
+            Picture: <input type="file" name="file" id="file" />
+            
+            <textarea rows="6" cols="60" name="lead" id="lead">
+                Enter article lead text here...
+            </textarea>
+            <textarea rows="15" cols="60" name="text" id="text">
+                Enter article text here...
+            </textarea>
+            
+            <h3>Select categories</h3>
+            <p>Hold down ctrl to select many.</p>
+            <select id="categories" th:field="*{categories}" multiple="multiple">
+                <option th:each="category : ${allCategories}"  
+                    th:value="${{category}}"
+                    th:text="${category.name}">
+                </option>
+            </select>
+            
+            <h3>Select writers</h3>
+            <p>Hold down ctrl to select many.</p>
+            <select id="writers" th:field="*{writers}" multiple="multiple">
+                <option th:each="writer : ${allWriters}"  
+                    th:value="${{writer}}"
+                    th:text="${writer.name}">
+                </option>
+            </select>
+            
+            <input type="submit" value="Submit article!"/>
+            <a th:href="@{/admin}">Back to admin page -> </a>
         </form>
         
-        
     </body>
-    
-    
 </html>

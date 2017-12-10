@@ -6,9 +6,35 @@
         <title>Edit</title>
     </head>
     <body>
-        <h2>Edit</h2>
-        <div>To be added soon!</div>
+        <form method="POST" action="/edit" th:object="${article}" enctype="multipart/form-data">
+            Headline: <input type="text" name="name" id="name" th:value="${article.name}"/>
+            New picture: <input type="file" name="file" id="file"/>
+            <input type="hidden" name="oldName" id="oldName" th:value="${article.name}"/>
+            
+            <textarea rows="6" cols="60" name="lead" id="lead" th:text="${article.lead}"></textarea>
+            <textarea rows="15" cols="60" name="text" id="text" th:text="${article.text}"></textarea>
+            
+            <h3>Select categories</h3>
+            <p>Hold down ctrl to select many.</p>
+            <select id="categories" th:field="*{categories}" multiple="multiple">
+                <option th:each="category : ${allCategories}"  
+                    th:value="${{category}}"
+                    th:text="${category.name}">
+                </option>
+            </select>
+            
+            <h3>Select writers</h3>
+            <p>Hold down ctrl to select many.</p>
+            <select id="writers" th:field="*{writers}" multiple="multiple">
+                <option th:each="writer : ${allWriters}"  
+                    th:value="${{writer}}"
+                    th:text="${writer.name}">
+                </option>
+            </select>
+            
+            <input type="submit" value="Save edit!"/>
+        </form>
         
-        <a th:href="@{/admin}">To admin page.</a>
+        <a th:href="@{/admin}">Back to admin page -> </a>
     </body>
 </html>

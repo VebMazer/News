@@ -1,10 +1,13 @@
 
 package wad.service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeSet;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import wad.domain.Article;
@@ -14,46 +17,39 @@ import wad.repository.ArticleRepository;
 import wad.repository.CategoryRepository;
 import wad.repository.UserSessionRepository;
 
+@Transactional
 @Service
 public class UserSessionService {
     
     @Autowired
     private UserSessionRepository userSessionRepository;
     
-    @Autowired
-    private ArticleRepository articleRepository;
-    
-    @Autowired
-    private CategoryRepository categoryRepository;
-    
     public UserSession getUserSession(HttpSession session) {
-        UserSession s;
-        if(session.getAttribute("usession") == null) {
-            s = new UserSession();
-            s.setName(session.getId());
-            userSessionRepository.save(s);
-            session.setAttribute("usession", s.getId());
-        } else {
+        if(session.getAttribute("usession") != null) {
             Long id = (Long) session.getAttribute("usession");
-            s = userSessionRepository.getOne(id);
+            if(userSessionRepository.existsById(id)) {
+                UserSession s = userSessionRepository.getOne(id);
+                if(s.getLastVisited().plusMinutes(120).isBefore(LocalDateTime.now())) {
+                    s.setDefaults();
+                }
+                s.setLastVisited(LocalDateTime.now());
+                return s;
+            }
         }
+        return createUserSession(session);
+    }
+    
+    public UserSession createUserSession(HttpSession session) {
+        UserSession s = new UserSession();
+        s.setName(session.getId());
+        userSessionRepository.save(s);
+        session.setAttribute("usession", s.getId());
+        s.setDefaults();
         return s;
     }
     
-    public List<Article> chosenArticles(UserSession s) {
-        if(s.NothingSelected()) return articleRepository.findAll();
-        
-        TreeSet<Article> set = new TreeSet<>();
-        for (Category c : s.getSearchCategories()) {
-            set.addAll(categoryRepository.getOne(c.getId()).getArticles());
-        }
-        
-        List<Article> articles = new ArrayList<>();
-        for (Article a : set) {
-            articles.add(a);
-        }
-        
-        return articles;
+    public UserSession saveUserSession(UserSession u) {
+        return userSessionRepository.save(u);
     }
     
 }

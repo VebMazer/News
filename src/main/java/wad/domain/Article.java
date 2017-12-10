@@ -27,9 +27,8 @@ public class Article extends AbstractPersistable<Long> {
     private LocalDateTime publishingTime;
     private LocalDateTime lastEditTime;
     private boolean edited;
-    private int views;
+    private Integer views;
     
-    //@Basic(fetch = FetchType.LAZY)
     @Lob
     private byte[] picture;
     
@@ -73,6 +72,11 @@ public class Article extends AbstractPersistable<Long> {
     
     public void addWriter(Writer w) {
         if(!writers.contains(w)) writers.add(w);
+    }
+    
+    public Integer getViews() {
+        if(views == null) views = 0;
+        return this.views;
     }
     
 }

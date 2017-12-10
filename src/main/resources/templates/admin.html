@@ -6,10 +6,29 @@
         <title>Newz</title>
     </head>
     <body>
-
-        <h2>Newz</h2>
         
-        <h3>Articles</h3>
+        <h3>Add Writer</h3>
+        <form action="/admin/writer" method="POST">
+                Name: <input type="text" name="name" id="name"/><br/>
+                <input type="submit" value="Add"/>            
+        </form>
+        
+        <h3>Add Category</h3>
+        <form action="/admin/category" method="POST">
+                Name: <input type="text" name="name" id="name"/><br/>
+                <input type="submit" value="Add"/>            
+        </form>
+        
+        <h3>Writers</h3>
+        <div>
+            <ul>
+                <li th:each="writer : ${writers}">
+                    <a th:href="@{/{writerId}(writerId=${writer.id})}" th:text="${writer.name}">category name</a>
+                </li>
+            </ul>
+        </div>
+        
+        <h3>Categories</h3>
         <div>
             <ul>
                 <li th:each="category : ${categories}">
@@ -18,18 +37,18 @@
             </ul>
         </div>
         
-        
         <h3>Edit Articles</h3>
         <div>
             <ul>
                 <li th:each="article : ${articles}">
-                    <a th:href="@{/edit/{articleId}(articleId=${article.id})}" th:text="${article.name}">category name</a>
-                    
+                    <a th:href="@{/edit/{articleId}(articleId=${article.id})}" th:text="${article.name}">article name</a>
                 </li>
             </ul>
         </div>
-
-        <a th:href="@{/admin}">To admin page.</a>
+        
+        <a th:href="@{/create}">To Create page.</a>
+        
+        <a th:href="@{/}">To Main page.</a>
 
     </body>
 

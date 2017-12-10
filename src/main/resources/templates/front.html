@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8" />
+        <title>Newz</title>
+    </head>
+    <body>
+        <a th:href="@{/admin}">To admin page -> </a>
+        <h1>Newz</h1>
+        
+        <h2>Categories</h2>
+        <nav class="categoryMenu">
+            <ul>
+                <li><a th:href="@{/}">AllCategories</a></li>
+                <li th:each="category : ${categories}">
+                    <a th:href="@{/{categoryId}(categoryId=${category.id})}" th:text="${category.name}">category name</a>
+                </li>
+            </ul>
+        </nav>
+        
+        <div>
+            <h3> Search options </h3>
+                <form action="/config/amountOfArticlesShown" method="POST">
+                    Articles shown:<input type="text" name="howMany" id="howMany" th:value="${usession.articlesShown}"/>
+                    <input type="submit" value="Show"/>            
+                </form>
+                <br/>
+                <form action="/config/sortByTimeOrViews" method="POST">
+                    <input type="submit" th:value="${usession.byTimeOrByViewsString}"/>
+                </form>
+        </div>
+        <br/>
+        <h1>Articles</h1>
+        <ol>
+            <li th:each="article : ${articles}">
+                <a th:href="@{/articles/{articleId}(articleId=${article.id})}">
+                    <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
+                    <h3 th:text="${article.name}">Headline</h3>
+                    <p th:text="${article.lead}">Lead</p>
+                </a>
+                <br/>
+            </li>
+        </ol>
+        
+    </body>
+
+</html>

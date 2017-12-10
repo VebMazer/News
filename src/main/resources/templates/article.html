@@ -6,8 +6,17 @@
         <title>Article</title>
     </head>
     <body>
-        <h2>Headline<h2>
-        <div>ingressi</div>
-        <div>Display article. Coming soon!</div>
+        <h2 id="headline" th:text="${article.name}">Headline</h2>
+        <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
+        <div id="lead" th:text="${article.lead}">Lead</div>
+        <div id="text" th:text="${article.text}">Text</div>
+
+        <h3>Writers:</h3>
+        <ul>
+            <li th:each="writer : ${article.writers}">
+                <a th:href="@{/{writerId}(writerId=${writer.id})}" th:text="${writer.name}">category name</a>
+            </li>
+        </ul>
+        <a th:href="@{/}">Back to main page -> </a>
     </body>
 </html>

@@ -2,6 +2,8 @@
 package wad.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +13,9 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import wad.domain.Article;
 import wad.domain.Category;
@@ -20,6 +24,7 @@ import wad.repository.ArticleRepository;
 import wad.repository.CategoryRepository;
 import wad.repository.WriterRepository;
 
+@Transactional
 @Controller
 public class AdminController {
     
@@ -82,41 +87,18 @@ public class AdminController {
         return "redirect:/admin";
     }
     
-    @GetMapping("/create")
-    public String createArticle(Model model) {
-        return "create";
-    }
-    
-    @PostMapping("/create")
-    public String createArticle(@RequestParam String name, @RequestParam String lead, @RequestParam String text, @RequestParam Long writerId, @RequestParam("file") MultipartFile file) throws IOException {
-        Article a = new Article();
-        
-        a.setName(name);
-        a.setLead(lead);
-        a.setText(text);
-        a.publish();
-        a.getWriters().add(writerRepository.getOne(writerId));
-        
-        if(file.getContentType().contains("image")) {
-            a.setPicture(file.getBytes());
-        }
-        
-        articleRepository.save(a);
-        return "redirect:/admin";
-    }
-    
     @PostMapping("/admin/category")
-    public String createCategory(@RequestParam String categoryName) {
+    public String createCategory(@RequestParam String name) {
         Category c = new Category();
-        c.setName(categoryName);
+        c.setName(name);
         categoryRepository.save(c);
         return "redirect:/admin";
     }
     
     @PostMapping("/admin/writer")
-    public String createWriter(@RequestParam String writerName) {
+    public String createWriter(@RequestParam String name) {
         Writer w = new Writer();
-        w.setName(writerName);
+        w.setName(name);
         writerRepository.save(w);
         return "redirect:/admin";
     }
