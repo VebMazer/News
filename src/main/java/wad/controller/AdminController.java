@@ -31,24 +31,24 @@ public class AdminController {
     @Autowired
     private WriterRepository writerRepository;
     
-    @PostConstruct
-    public void testInitialization() {
-        Writer testWriter1 = new Writer();
-        testWriter1.setName("testWriter1");
-        Writer testWriter2 = new Writer();
-        testWriter2.setName("testWriter2");
-        
-        Category testCategory1 = new Category();
-        testCategory1.setName("testCategory1");
-        Category testCategory2 = new Category();
-        testCategory2.setName("testCategory2");
-        
-        writerRepository.save(testWriter1);
-        writerRepository.save(testWriter2);
-        
-        categoryRepository.save(testCategory1);
-        categoryRepository.save(testCategory2);
-    }
+//    @PostConstruct
+//    public void testInitialization() {
+//        Writer testWriter1 = new Writer();
+//        testWriter1.setName("testWriter1");
+//        Writer testWriter2 = new Writer();
+//        testWriter2.setName("testWriter2");
+//        
+//        Category testCategory1 = new Category();
+//        testCategory1.setName("testCategory1");
+//        Category testCategory2 = new Category();
+//        testCategory2.setName("testCategory2");
+//        
+//        writerRepository.save(testWriter1);
+//        writerRepository.save(testWriter2);
+//        
+//        categoryRepository.save(testCategory1);
+//        categoryRepository.save(testCategory2);
+//    }
     
     @GetMapping("/admin")
     public String adminPage(Model model) {
