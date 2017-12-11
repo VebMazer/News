@@ -9,23 +9,20 @@ monta artikkelia sivulle listataan, sekä järjestetäänkö ne julkaisuajan, va
 kertojen perusteella. Sivulla on myös navigaatio palkki, josta voi valita haluamansa 
 categorian, jolloin sivulle listataan, vain tämän categorian artikkeleita.
 Näkymässä on myös linkki (admin) näkymään.
-->(admin)
-->(article)
+Linkit: (admin), (article)
 
 (article):
 Koko artikkelin pääsee lukemaan, kun napsauttaa (front) näkymässä, jotakin artikkelia.
 Artikkeli näkymä on tarkoitettu, vain artikkelien lukemiseen.
 Näkymästä on myös linkki, takaisin (front) näkymään.
-->(front)
+Linkit: (front)
 
 (admin):
 Sovelluksen hallintaan tarkoitettu sivusto, joka listaa olemassa olevat tietokanta 
 objektit, ja mahdollistaa niiden poistamisen. Kirjoittajia ja kategorioita voi myös lisätä tässä 
 näkymässä.  artikkeli listasta voi myös valita artikkelin ja siirtyä sen muokkaus 
 näkymään(edit). Näkymässä on myös linkki artikkelien luonti sivustolle(create).
-->(front)
-->(create)
-->(edit)
+Linkit: (front) ,(create), (edit)
 
 (create)
 Näkymässä on kentät Otsikolle, ingressille, tekstille ja kuvalle.
@@ -33,14 +30,14 @@ Näkymässä voi myös valita haluamansa jo olemassa olevat categoriat ja
 kirjoittajat luotavalle artikkelille. Kentän voi otsikkoa lukuunottamatta halutessaan 
 jättää myös tyhjäksi. Valmiin artikkelin voi lähettää sivun alimmasta painikkeesta.
 Näkymästä on myös linkki takaisin (admin) näkymään.
-->(admin)
+Linkit: (admin)
 
 (edit)
 Kuin (create), mutta näkymään pääsee valitsemalla artikkelin (admin) näkymästä, joka sitten
 korvataan muokatulla versiolla, jos muokatun version lähettää. Jos uutta kuvaa ei lisätä
 uusiksi, säilyy artikkelilla sen vanha kuva.
 Näkymästä on myös linkki takaisin (admin) näkymään.
-->(admin)
+Linkit:(admin)
 
 
 Puutteet:
