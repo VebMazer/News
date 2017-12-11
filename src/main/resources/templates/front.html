@@ -3,6 +3,10 @@
     <head>
         <meta charset="UTF-8" />
         <title>Newz</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    
     </head>
     <body>
         <a th:href="@{/admin}">To admin page -> </a>
@@ -13,7 +17,7 @@
             <ul>
                 <li><a th:href="@{/}">AllCategories</a></li>
                 <li th:each="category : ${categories}">
-                    <a th:href="@{/{categoryId}(categoryId=${category.id})}" th:text="${category.name}">category name</a>
+                    <a th:href="@{/front/{categoryId}(categoryId=${category.id})}" th:text="${category.name}">category name</a>
                 </li>
             </ul>
         </nav>
@@ -26,7 +30,7 @@
                 </form>
                 <br/>
                 <form action="/config/sortByTimeOrViews" method="POST">
-                    <input type="submit" th:value="${usession.byTimeOrByViewsString}"/>
+                    Show:<input type="submit" th:value="${usession.byTimeOrByViewsString}"/>
                 </form>
         </div>
         <br/>

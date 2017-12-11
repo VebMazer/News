@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import wad.domain.UserSession;
 import wad.repository.CategoryRepository;
@@ -27,6 +26,7 @@ public class FrontController {
     @Autowired
     private SortingService sortingService;
     
+    
     @GetMapping("/")
     public String home(Model model, HttpSession session) {
         model.addAttribute("categories", categoryRepository.findAll());
@@ -37,12 +37,13 @@ public class FrontController {
         return "front";
     }
     
-    @GetMapping("/{categoryId}")
+    @GetMapping("/front/{categoryId}")
     public String categoryArticles(Model model, HttpSession session, @PathVariable Long categoryId) {
         model.addAttribute("categories", categoryRepository.findAll());
         UserSession usession = userSessionService.getUserSession(session);
         sortingService.projectSortedArticles(model, session, categoryId);
-        usession.setCurrentPath("/" + categoryId);
+        usession.setCurrentPath("/front/" + categoryId);
+        model.addAttribute("usession", usession);
         return "front";
     }
     

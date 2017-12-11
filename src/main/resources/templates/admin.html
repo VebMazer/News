@@ -4,6 +4,9 @@
     <head>
         <meta charset="UTF-8" />
         <title>Newz</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
         
@@ -23,7 +26,10 @@
         <div>
             <ul>
                 <li th:each="writer : ${writers}">
-                    <a th:href="@{/{writerId}(writerId=${writer.id})}" th:text="${writer.name}">category name</a>
+                    <span th:text="${writer.name}"></span>
+                    <form th:action="@{/admin/writer/{writerId}(writerId=${writer.id})}" th:method="DELETE">
+                        <input type="submit" value="remove"/>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -32,7 +38,10 @@
         <div>
             <ul>
                 <li th:each="category : ${categories}">
-                    <a th:href="@{/{categoryId}(categoryId=${category.id})}" th:text="${category.name}">category name</a>
+                    <span th:text="${category.name}"></span>
+                    <form th:action="@{/admin/category/{categoryId}(categoryId=${category.id})}" th:method="DELETE">
+                        <input type="submit" value="remove"/>
+                    </form>
                 </li>
             </ul>
         </div>
@@ -42,6 +51,9 @@
             <ul>
                 <li th:each="article : ${articles}">
                     <a th:href="@{/edit/{articleId}(articleId=${article.id})}" th:text="${article.name}">article name</a>
+                    <form th:action="@{/admin/article/{articleId}(articleId=${article.id})}" th:method="DELETE">
+                        <input type="submit" value="remove"/>
+                    </form>
                 </li>
             </ul>
         </div>

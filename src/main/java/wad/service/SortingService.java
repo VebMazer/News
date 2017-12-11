@@ -33,19 +33,24 @@ public class SortingService {
     public void projectSortedArticles(Model model, HttpSession session, Long categoryId) {
         UserSession usession = userSessionService.getUserSession(session);
         
+//        if(usession.getArticlesShown() == null || usession.getArticlesShown() == 0) {
+//            model.addAttribute("articles", new ArrayList<>());
+//            return;
+//        }
+        
         Pageable pageable;
         if(usession.getByTimeOrByViews()) pageable = PageRequest.of(0, usession.getArticlesShown(), Sort.Direction.DESC, "publishingTime");
         else pageable = PageRequest.of(0, usession.getArticlesShown(), Sort.Direction.DESC, "views");
         
         if(categoryId == null) {
             model.addAttribute("articles", articleRepository.findAll(pageable));
-        
+            
         } else {
             List<Article> articles = new ArrayList();
             
             Category category = categoryRepository.getOne(categoryId);
             for (Article a : articleRepository.findAll(pageable)) {
-                if(a.getCategories().contains(category)) articles.add(a);
+                if(a.getCategories() != null && a.getCategories().contains(category)) articles.add(a);
             }
             
             model.addAttribute("articles", articles);
