@@ -29,13 +29,13 @@ public class EditController {
     @Autowired
     private WriterRepository writerRepository;
     
-    @GetMapping("/edit/{articleId}")
-    public String editPage(Model model, @PathVariable Long articleId) {
-        model.addAttribute("allCategories", categoryRepository.findAll());
-        model.addAttribute("allWriters", writerRepository.findAll());
-        model.addAttribute("article", articleRepository.getOne(articleId));
-        return "edit";
-    }
+//    @GetMapping("/edit/{articleId}")
+//    public String editPage(Model model, @PathVariable Long articleId) {
+//        model.addAttribute("allCategories", categoryRepository.findAll());
+//        model.addAttribute("allWriters", writerRepository.findAll());
+//        model.addAttribute("article", articleRepository.getOne(articleId));
+//        return "edit";
+//    }
     
     @PostMapping("/edit")
     public String editArticle(Article article, @RequestParam String oldName, @RequestParam("file") MultipartFile file) throws IOException {
