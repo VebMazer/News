@@ -4,17 +4,29 @@
     <head>
         <meta charset="UTF-8" />
         <title>Edit</title>
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
+        
+        <br/>
+        <br/>
+        
+        <div class="container bg-danger">
+            <a th:href="@{/admin}">Back to admin page -> </a>
+        </div>
+        
+        <div class="container bg-success">
+        <h2>Create article</h2>
         <form method="POST" action="/edit" th:object="${article}" enctype="multipart/form-data">
             Headline: <input type="text" name="name" id="name" th:value="${article.name}"/>
+            <br/>
             New picture: <input type="file" name="file" id="file"/>
             <input type="hidden" name="oldName" id="oldName" th:value="${article.name}"/>
             
             <textarea rows="6" cols="60" name="lead" id="lead" th:text="${article.lead}"></textarea>
+            <br/>
             <textarea rows="15" cols="60" name="text" id="text" th:text="${article.text}"></textarea>
             
             <h3>Select categories</h3>
@@ -34,10 +46,15 @@
                     th:text="${writer.name}">
                 </option>
             </select>
+            <br/>
+            <br/>
             
             <input type="submit" value="Save edit!"/>
+            <br/>
+            <br/>
         </form>
-        
-        <a th:href="@{/admin}">Back to admin page -> </a>
+        </div>
+        <br/>
+        <br/>
     </body>
 </html>

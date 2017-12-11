@@ -4,20 +4,43 @@
     <head>
         <meta charset="UTF-8" />
         <title>Article</title>
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
-        <h2 id="headline" th:text="${article.name}">Headline</h2>
-        <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
-        <div id="lead" th:text="${article.lead}">Lead</div>
-        <div id="text" th:text="${article.text}">Text</div>
-
-        <h3>Writers:</h3>
-        <ul>
-            <li th:each="writer : ${article.writers}" th:text="${writer.name}"></li>
-        </ul>
-        <a th:href="@{/}">Back to main page -> </a>
+        <br/>
+        <br/>
+        <div class="container bg-danger">
+            <a th:href="@{/}">Back to main page -> </a>
+        </div>
+        
+        <div class="container bg-warning">
+            <br/>
+            <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
+            <br/>
+            <br/>
+            <h1 id="headline" th:text="${article.name}">Headline</h1>
+            <br/>
+        </div>
+        <br/>
+        <div class="container bg-success">
+            <br/>
+            <div id="lead" th:text="${article.lead}" class="lead">Lead</div>
+            <br/>
+        </div>
+        <br/>
+        <div class="container bg-info">
+            <br/>
+            <div id="text" th:text="${article.text}">Text</div>
+            <br/>
+        </div>
+        <br/>
+        <div class="container bg-info">
+            <h3>Writers:</h3>
+            <ul>
+                <li th:each="writer : ${article.writers}" th:text="${writer.name}"></li>
+            </ul>
+        </div>
     </body>
 </html>

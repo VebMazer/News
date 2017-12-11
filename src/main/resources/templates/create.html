@@ -4,20 +4,29 @@
     <head>
         <meta charset="UTF-8" />
         <title>Create</title>
-                <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
     <body>
+        <br/>
+        <br/>
+        
+        <div class="container bg-danger">
+            <a th:href="@{/admin}">Back to admin page -> </a>
+        </div>
+        
+        <div class="container bg-info">
         <h2>Create article</h2>
         
         <form method="POST" action="/create" th:object="${article}" enctype="multipart/form-data">
-            Headline: <input type="text" name="name" id="name"/>
-            Picture: <input type="file" name="file" id="file" />
+            Headline: <input type="text" name="name" id="name"/><br/>
+            Picture: <input type="file" name="file" id="file"/>
             
             <textarea rows="6" cols="60" name="lead" id="lead">
                 Enter article lead text here...
             </textarea>
+            <br/>
             <textarea rows="15" cols="60" name="text" id="text">
                 Enter article text here...
             </textarea>
@@ -40,9 +49,18 @@
                 </option>
             </select>
             
+            <br/>
+            <br/>
+            
             <input type="submit" value="Submit article!"/>
-            <a th:href="@{/admin}">Back to admin page -> </a>
+            
+            <br/>
+            <br/>
         </form>
+        
+        </div>
+        <br/>
+        <br/>
         
     </body>
 </html>

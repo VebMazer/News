@@ -8,8 +8,16 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css"/>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        
+    <body class="container">
+        <br/>
+        <div class="container bg-danger">
+            <a th:href="@{/}"> -> To Main page.</a>
+            <br/>
+            <br/>
+            <a th:href="@{/create}"> -> To Create page.</a>
+        </div>
+        <br/>
+        <div class="container bg-info">
         <h3>Add Writer</h3>
         <form action="/admin/writer" method="POST">
                 Name: <input type="text" name="name" id="name"/><br/>
@@ -21,9 +29,12 @@
                 Name: <input type="text" name="name" id="name"/><br/>
                 <input type="submit" value="Add"/>            
         </form>
-        
-        <h3>Writers</h3>
+        <br/>
+        </div>
+        <br/>
+        <div class="container bg-success">
         <div>
+            <h3>Writers</h3>
             <ul>
                 <li th:each="writer : ${writers}">
                     <span th:text="${writer.name}"></span>
@@ -33,9 +44,8 @@
                 </li>
             </ul>
         </div>
-        
-        <h3>Categories</h3>
         <div>
+            <h3>Categories</h3>
             <ul>
                 <li th:each="category : ${categories}">
                     <span th:text="${category.name}"></span>
@@ -45,9 +55,8 @@
                 </li>
             </ul>
         </div>
-        
-        <h3>Edit Articles</h3>
         <div>
+            <h3>Edit Articles</h3>
             <ul>
                 <li th:each="article : ${articles}">
                     <a th:href="@{/edit/{articleId}(articleId=${article.id})}" th:text="${article.name}">article name</a>
@@ -57,11 +66,9 @@
                 </li>
             </ul>
         </div>
+            <br/>
+        </div>
         
-        <a th:href="@{/create}">To Create page.</a>
-        
-        <a th:href="@{/}">To Main page.</a>
-
     </body>
 
 </html>

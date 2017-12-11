@@ -8,21 +8,29 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     
     </head>
-    <body>
-        <a th:href="@{/admin}">To admin page -> </a>
-        <h1>Newz</h1>
-        
-        <h2>Categories</h2>
-        <nav class="categoryMenu">
-            <ul>
-                <li><a th:href="@{/}">AllCategories</a></li>
+    <body class="container">
+        <div class="jumbotron">
+            <h1>Newz</h1>
+            <p>The best source of random empty articles in
+            the world wide web.</p>
+        </div>
+        <nav class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <a class="navbar-brand" th:href="@{/}">Categories</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li><a th:href="@{/}">All</a></li>
                 <li th:each="category : ${categories}">
                     <a th:href="@{/front/{categoryId}(categoryId=${category.id})}" th:text="${category.name}">category name</a>
                 </li>
             </ul>
         </nav>
         
-        <div>
+        <div class="container bg-danger">
+            <a th:href="@{/admin}" >To admin page -> </a>
+        </div>
+        
+        <div class="container bg-info">
             <h3> Search options </h3>
                 <form action="/config/amountOfArticlesShown" method="POST">
                     Articles shown:<input type="text" name="howMany" id="howMany" th:value="${usession.articlesShown}"/>
@@ -34,17 +42,21 @@
                 </form>
         </div>
         <br/>
-        <h1>Articles</h1>
-        <ol>
-            <li th:each="article : ${articles}">
-                <a th:href="@{/articles/{articleId}(articleId=${article.id})}">
-                    <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
-                    <h3 th:text="${article.name}">Headline</h3>
-                    <p th:text="${article.lead}">Lead</p>
-                </a>
-                <br/>
-            </li>
-        </ol>
+        <div class="container bg-success">
+            <br/>
+            <br/>
+            <ol>
+                <li th:each="article : ${articles}">
+                    <a th:href="@{/articles/{articleId}(articleId=${article.id})}">
+                        <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
+                        <h3 th:text="${article.name}">Headline</h3>
+                        <p th:text="${article.lead}">Lead</p>
+                        <br/>
+                    </a>
+                    <br/>
+                </li>
+            </ol>
+        </div>
         
     </body>
 
