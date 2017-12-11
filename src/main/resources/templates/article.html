@@ -37,6 +37,10 @@
         </div>
         <br/>
         <div class="container bg-info">
+            Posted:
+            <span th:text="${article.publishingTime}"></span><br/>
+            Views:
+            <span th:text="${article.views}"></span><br/>
             <h3>Writers:</h3>
             <ul>
                 <li th:each="writer : ${article.writers}" th:text="${writer.name}"></li>

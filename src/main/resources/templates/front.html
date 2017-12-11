@@ -51,6 +51,8 @@
                         <img th:src="@{/articles/{articleId}/picture(articleId=${article.id})}"/>
                         <h3 th:text="${article.name}">Headline</h3>
                         <p th:text="${article.lead}">Lead</p>
+                        Posted:
+                        <span th:text="${article.publishingTime}"></span>
                         <br/>
                     </a>
                     <br/>
